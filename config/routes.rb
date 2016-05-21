@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   
   root to: 'pages#homepage'
   get 'about', to: 'pages#about'
+  get 'signup', to: 'users#new'
   
   # gives all routes for articles model
   resources :articles
+  resources :users, except: [:new]  # stop new user route as we have 'signup'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
