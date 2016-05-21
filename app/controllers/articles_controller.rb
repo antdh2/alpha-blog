@@ -16,7 +16,6 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    debugger
     # first create new article object
     @article = Article.new(article_params)
     @article.user = User.first
