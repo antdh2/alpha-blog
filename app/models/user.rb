@@ -13,4 +13,7 @@ class User < ActiveRecord::Base
             length: {maximum: 105 },
             uniqueness: { case_sensitive: false },
             format: {with: VALID_EMAIL_REGEX }
+            
+  # for passwords
+  has_secure_password
 end
