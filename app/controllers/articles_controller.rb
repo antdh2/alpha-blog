@@ -4,8 +4,8 @@ class ArticlesController < ApplicationController
   
   
   def index
-    # grab all articles in database
-    @articles = Article.all
+    # grab 5 number of items per page
+    @articles = Article.paginate(page: params[:page], per_page: 5)
   end
   
   def new
