@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
   # this calls the set_article method on the defined methods as first line of code in method
   before_action :set_article, only: [:edit, :update, :show, :destroy]
-  
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index
     # grab 5 number of items per page
@@ -58,5 +59,12 @@ class ArticlesController < ApplicationController
   
     def article_params
       params.require(:article).permit(:title, :description)
+    end
+    
+    def require_same_user
+      if current_user != @article.user
+        flash[:danger] = "You can only edit or delete your own articles"
+        redirect_to root_path
+      end
     end
 end
