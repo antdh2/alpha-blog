@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # gives all routes for articles model
   resources :articles
   resources :users, except: [:new]  # stop new user route as we have 'signup'
+  resources :categories, except: [:destroy] # stop user destroying categories
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
